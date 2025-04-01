@@ -22,11 +22,94 @@ app.listen(PORT, () => {
 
 app.get('/items', (req, res) => {
   knex('item_table')
-    .select('Item_Name', 'Description', 'Quantity' )
+    .select('*' )
     .then(data => res.status(200).json(data))
     .catch(err =>
       res.status(404).json({
         message: 'Data not found'
       })
     )
+})
+
+app.get('/users', (req, res) => {
+  knex('user_table')
+    .select('First_Name', 'Last_Name')
+    .then(data => res.status(200).json(data))
+    .catch(err =>
+      res.status(404).json({
+        message: 'Data not found'
+      })
+    )
+})
+
+app.get('/items/:id', (req, res) => {
+  let getId = req.params.id
+  knex('item_table')
+    .select('*')
+    .where({'Id': parseInt(getId)})
+    .then(items => res.json(items))
+})
+
+//-------------POST Section-----------------------
+
+app.post('/users', (req, res) => {
+  const {First_Name, Last_Name, Username, Password} = req.body
+  knex('user_table')
+    .insert({First_Name, Last_Name, Username, Password})
+    .then(() => {
+      res.json({success: true, message: 'user created'})
+    })
+})
+
+app.post('/items', (req, res) => {
+  const {UserId, Item_Name, Description, Quantity} = req.body
+  knex('item_table')
+    .insert({UserId, Item_Name, Description, Quantity})
+    .then(() => {
+      res.json({success: true, message: 'item created'})
+    })
+})
+
+app.post('/login', (req, res) => {
+  const {Username, Password} = req.body;
+
+  const manager = knex('user_table')
+                  .where("Username", Username)
+                  .first();
+  const managerpw = knex('user_table')
+                    .where("Password", Password)
+                    .first()
+  if (!manager || !managerpw) {
+    return res.status(400).json({success: false, message: "Incorrect username and/or password"})
+  }
+
+  res.json({success: true, message: "Credentials verified, login successful"})
+})
+
+//---------------PATCH Section----------------------
+
+app.patch('/items/:id', (req, res) => {
+  let getId = req.params.id
+  const {Item_Name, Description, Quantity} = req.body;
+  knex('item_table')
+    .where({"Id": parseInt(getId)})
+    .update({Item_Name, Description, Quantity})
+    .then(() => {
+      res.json({success: true, message: 'item modified'})
+    })
+    .catch(err => {
+      res.json(err)
+    })
+})
+
+//----------------DELETE Section--------------------
+
+app.delete('/items/:id', (req, res) => {
+  let getId = req.params.id
+  knex('item_table')
+    .where({"Id": parseInt(getId)})
+    .del()
+    .then(() => {
+      res.json({success: true, message: 'item deleted'})
+    })
 })
