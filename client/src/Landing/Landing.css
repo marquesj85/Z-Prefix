@@ -1,0 +1,13 @@
+.login-form {
+  margin-top: -300px;
+}
+
+.loggedin {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* makes sure it's above other elements */
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
