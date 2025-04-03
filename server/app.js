@@ -42,14 +42,28 @@ app.get('/users', (req, res) => {
     )
 })
 
-app.get('/items/:id', (req, res) => {
-  let getId = req.params.id
-  knex('item_table')
-    .select('*')
-    .where({'Id': parseInt(getId)})
-    .then(items => res.json(items))
-})
+// app.get('/items/:id', (req, res) => {
+//   let getId = req.params.id
+//   knex('item_table')
+//     .select('*')
+//     .where({'Id': parseInt(getId)})
+//     .then(items => res.json(items))
+// })
 
+app.get('/items/:Username', (req, res) => {
+  let {Username} = req.params;
+  console.log('Username param:', Username);
+    knex('item_table')
+    .join('user_table', 'item_table.UserId', '=', 'user_table.Id')
+    .select('item_table.*')
+    .where('user_table.Username', Username)
+    .then(items => res.json(items))
+    .catch(err =>
+      res.status(404).json({
+        message: 'Data not found'
+      })
+    )
+})
 //-------------POST Section-----------------------
 
 app.post('/users', (req, res) => {

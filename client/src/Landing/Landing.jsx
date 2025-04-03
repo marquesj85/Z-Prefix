@@ -2,10 +2,14 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Landing.css';
 import {useManager} from '../Context'
+import Logout from '../Logout/Logout'
 
 
 
 export default function Landing() {
+
+  const moveto = useNavigate()
+
 
   const [submitData, setsubmitData] = useState({
     Username: "",
@@ -44,6 +48,7 @@ export default function Landing() {
         if(data.success == true){
           alert('Login Successful')
           setLoggedin(submitData.Username)
+          moveto('/items')
         }else{
           alert('Incorrect Login')
         }
@@ -73,6 +78,7 @@ export default function Landing() {
         if(data.success == true){
           alert('New User Created! And Logged In!')
           setLoggedin(newUser.Username)
+          moveto('/items')
         }else{
           alert('User Creation Failed')
         }
@@ -84,6 +90,7 @@ export default function Landing() {
     <>
       <div className="loggedin">
       {loggedIn && <p>Logged in as: {loggedIn}</p>}
+      {Logout()}
       </div>
        <div className="login-form">
       <h2>Login</h2>
