@@ -3,6 +3,7 @@ import {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import Logout from '../Logout/Logout';
 import { useNavigate } from 'react-router-dom';
+import './AddItem.css'
 
 export default function AddItem(){
 

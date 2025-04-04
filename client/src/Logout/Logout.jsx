@@ -1,6 +1,6 @@
 import { useManager } from '../Context'
 import { useNavigate } from 'react-router-dom';
-
+import './Logout.css';
 export default function Logout() {
 
   const {loggedIn, setLoggedin} = useManager()
@@ -14,5 +14,5 @@ export default function Logout() {
 
   if (loggedIn == '') return null
 
-  return <button onClick={logOut}> Logout</button>
+  return <button className="logout-button" onClick={logOut}> Logout</button>
 }

@@ -2,6 +2,7 @@ import {useManager} from '../Context'
 import {useState, useEffect} from 'react'
 import Logout from '../Logout/Logout'
 import { Link } from 'react-router-dom';
+import './Items.css'
 
 export default function Items() {
 
@@ -22,24 +23,26 @@ export default function Items() {
   return (
     <>
        <div className="loggedin">
-       <button><Link to={'/'}>HOME</Link></button>
-      <p>Logged in as: {loggedIn}</p>
+       <p className="title">INVENTORY MANAGER</p>
+       <button className="button"><Link to={'/'}>HOME</Link></button>
+      <p className="log">Logged in as: {loggedIn}</p>
       {Logout()}
       </div>
       <h1>{loggedIn} Item List</h1>
       <button><Link to={'/additem'}>Add Item</Link></button>
-      <div>
+      <div className="box">
         <ul>
-          {itemlist.map(item => (
-            <li key={item.Id}>
-              Item Name: {item.Item_Name}<br>
-              </br>
-              Description: {item.Description}<br>
-              </br>
-              Quantity: {item.Quantity}<br>
-              </br>
+          {itemlist.length == 0 ? (
+            <li>No Items Found</li>
+          ) : (
+          itemlist.map(item => (
+            <li key={item.Id} className="item">
+              Item Name: {item.Item_Name}<br />
+              Description: {item.Description}<br />
+              Quantity: {item.Quantity}<br />
               </li>
-          ))}
+          ))
+        )}
         </ul>
       </div>
     </>

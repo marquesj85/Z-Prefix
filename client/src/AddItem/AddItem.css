@@ -1,0 +1,55 @@
+.additem-form {
+  background-color: #1e1e1e;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 400px;
+  margin-top: 0px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  color: white;
+}
+
+.additem-form h2 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: white;
+}
+
+.additem-form form div {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.additem-form label {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.additem-form input {
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #333;
+  color: white;
+}
+
+.additem-form input:focus {
+  outline: none;
+  border-color: #888;
+}
+
+.additem-form button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.additem-form button:hover {
+  background-color: #357ab8;
+}

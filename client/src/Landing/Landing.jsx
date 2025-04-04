@@ -91,10 +91,12 @@ export default function Landing() {
   return (
     <>
       <div className="loggedin">
-        <button><Link to={'/items'}>ALL ITEMS</Link></button>
-      {loggedIn && <p>Logged in as: {loggedIn}</p>}
+        <p className="title">INVENTORY MANAGER</p>
+        <button className="button"><Link to={'/items'}>ALL ITEMS</Link></button>
+      {loggedIn && <p className="log">Logged in as: {loggedIn}</p>}
       {Logout()}
       </div>
+      <div className="forms">
        <div className="login-form">
       <h2>Login</h2>
       <form onSubmit={(stop) => {
@@ -123,7 +125,8 @@ export default function Landing() {
         <button type="submit">Submit</button>
       </form>
     </div>
-    <div>
+
+    <div className="user-form">
       <h2>Create New User</h2>
       <form onSubmit={(stop) => {
         stop.preventDefault();
@@ -168,6 +171,7 @@ export default function Landing() {
         </div>
         <button type="submit">Submit</button>
       </form>
+    </div>
     </div>
     </>
   )
