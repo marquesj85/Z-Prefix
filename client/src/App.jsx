@@ -5,6 +5,7 @@ import './App.css'
 import { Routes, Route } from 'react-router-dom'
 import Landing from './Landing/Landing'
 import Items from './Items/Items'
+import AddItem from './AddItem/AddItem'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Landing />}/>
         <Route path='/items' element={<Items />}/>
+        <Route path='/additem' element={<AddItem />}/>
       </Routes>
     </>
   )

@@ -64,6 +64,21 @@ app.get('/items/:Username', (req, res) => {
       })
     )
 })
+
+app.get('/users/:Username', (req, res) => {
+  let {Username} = req.params;
+  console.log('Username param:', Username);
+  knex('user_table')
+    .select('Id')
+    .where({Username: Username})
+    .first()
+    .then(id => res.json(id))
+    .catch(err =>
+      res.status(404).json({
+        message: 'Data not found'
+      })
+    )
+})
 //-------------POST Section-----------------------
 
 app.post('/users', (req, res) => {

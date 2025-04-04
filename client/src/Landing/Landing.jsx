@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import './Landing.css';
 import {useManager} from '../Context'
 import Logout from '../Logout/Logout'
+import { Link } from 'react-router-dom';
+
 
 
 
@@ -89,6 +91,7 @@ export default function Landing() {
   return (
     <>
       <div className="loggedin">
+        <button><Link to={'/items'}>ALL ITEMS</Link></button>
       {loggedIn && <p>Logged in as: {loggedIn}</p>}
       {Logout()}
       </div>
